@@ -663,7 +663,7 @@ impl Plugin for PluginInstance {
     }
 
     fn get_parameter_object(&mut self) -> Arc<dyn PluginParameters + Sync> {
-        Arc::clone(&self.params) as Arc<dyn PluginParameters>
+        Arc::clone(&self.params) as Arc<dyn PluginParameters + Sync>
     }
 
     fn get_editor(&mut self) -> Option<Box<dyn Editor>> {
