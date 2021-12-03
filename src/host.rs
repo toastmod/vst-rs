@@ -662,7 +662,7 @@ impl Plugin for PluginInstance {
         ChannelInfo::from(unsafe { props.assume_init() })
     }
 
-    fn get_parameter_object(&mut self) -> Arc<dyn PluginParameters> {
+    fn get_parameter_object(&mut self) -> Arc<dyn PluginParameters + Sync> {
         Arc::clone(&self.params) as Arc<dyn PluginParameters>
     }
 
