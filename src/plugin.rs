@@ -652,7 +652,7 @@ pub trait Plugin: Send {
     fn process_events(&mut self, events: &api::Events) {}
 
     /// Get a reference to the shared parameter object.
-    fn get_parameter_object(&mut self) -> Arc<dyn PluginParameters> {
+    fn get_parameter_object(&mut self) -> Arc<dyn PluginParameters + Sync> {
         Arc::new(DummyPluginParameters)
     }
 
