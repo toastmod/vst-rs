@@ -4,8 +4,10 @@ use std::os::raw::c_void;
 use std::sync::Arc;
 
 use self::consts::*;
-use editor::Editor;
-use plugin::{Info, Plugin, PluginParameters};
+use crate::{
+    editor::Editor,
+    plugin::{Info, Plugin, PluginParameters},
+};
 
 /// Constant values
 #[allow(missing_docs)] // For obvious constants
@@ -134,7 +136,7 @@ pub struct AEffect {
 impl AEffect {
     /// Return handle to Plugin object. Only works for plugins created using this library.
     /// Caller is responsible for not calling this function concurrently.
-    // Supresses warning about returning a reference to a box
+    // Suppresses warning about returning a reference to a box
     #[allow(clippy::borrowed_box)]
     pub unsafe fn get_plugin(&self) -> &mut Box<dyn Plugin> {
         //FIXME: find a way to do this without resorting to transmuting via a box
@@ -473,14 +475,14 @@ impl Events {
     /// ```
     #[inline]
     #[allow(clippy::needless_lifetimes)]
-    pub fn events<'a>(&'a self) -> impl Iterator<Item = ::event::Event<'a>> {
+    pub fn events<'a>(&'a self) -> impl Iterator<Item = crate::event::Event<'a>> {
         self.events_raw()
             .iter()
-            .map(|ptr| unsafe { ::event::Event::from_raw_event(*ptr) })
+            .map(|ptr| unsafe { crate::event::Event::from_raw_event(*ptr) })
     }
 }
 
-/// The type of event that has occured. See `api::Event.event_type`.
+/// The type of event that has occurred. See `api::Event.event_type`.
 #[repr(i32)]
 #[derive(Copy, Clone, Debug)]
 pub enum EventType {

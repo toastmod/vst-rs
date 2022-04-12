@@ -1,14 +1,11 @@
-// author: doomy <alexander@resamplr.com>
+// author: doomy <notdoomy@protonmail.com>
 
 #[macro_use]
 extern crate vst;
-extern crate time;
-
-use vst::buffer::AudioBuffer;
-use vst::plugin::{Category, HostCallback, Info, Plugin, PluginParameters};
-use vst::util::AtomicFloat;
 
 use std::sync::Arc;
+
+use vst::prelude::*;
 
 /// Simple Gain Effect.
 /// Note that this does not use a proper scale for sound and shouldn't be used in
